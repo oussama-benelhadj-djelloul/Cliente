@@ -38,7 +38,24 @@
 
 
     <h1>Hello, world!</h1>
-
+    <button type="button" class=" mb-2 btn btn-primary">Create Feedback</button>
+    <% feedbacks.forEach(feedback => { %>  
+      <div class="card mb-2">
+        <div class="card-body">
+          <h5 class="card-title"><%= feedback.title %> </h5>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <p class="card-text"><%= feedback.description %></p>
+          <% if (feedback.response) { %>
+           
+            <div class="alert alert-success" role="alert">
+              <%= feedback.response %>
+            </div>
+            <% } %>
+          <a href="#" class="card-link"><%= feedback.vote %></a>
+        </div>
+      </div>
+    <% }) %>
+    <p class="text-muted">powered BY Cliente</p>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
