@@ -94,6 +94,20 @@ app.get('/user/upvote/:feedbackID', function(req,res){
       )
 })
 
+app.get('/user/logout',function(req,res){
+    var brand = req.session.brand
+    req.session.user = null
+    req.session.regenerate(function (err) {
+        console.log(err)
+    })
+    req.session.brand = brand
+    console.log("new session = "+req.session)
+    
+    res.redirect(`/company/${req.session.brand}`)
+})
+
+/* Admin Controller */
+
 app.get('/admin/login', function(req,res){
     res.render('aconnect')
 })
