@@ -52,6 +52,48 @@ app.post('/user/login', function(req,res){
     })
 })
 
+app.post('/feedback/create',async function(req,res){
+
+    console.log(req.body)
+    var feedback = new feedbacks({
+        title: req.body.title,
+        description: req.body.description,
+        from: req.body.email,
+        important: req.body.important,
+        to : req.session.brand
+    });
+    await feedback.save()
+        .then(item => {
+            res.redirect(`/feedback/view/${item._id}`)
+        })
+        .catch(err => {
+            res.status(400).send("unable to save to database" + err);
+        });
+})
+
+app.get('/feedback/view/:id',async function(req,res){
+    var response =await feedbacks.find({_id:req.params.id})
+    res.render('feedbackPage',
+    {Brand : req.session.brand, feedbacks : response, user :  req.session.user})
+})
+
+app.get('/user/upvote/:feedbackID', function(req,res){
+    console.log(req.params.feedbackID)
+    console.log(req.session.user)
+    feedbacks.findOneAndUpdate(
+        { _id: req.params.feedbackID }, 
+        { $addToSet: { vote: req.session.user } }, 
+        function(err,response){
+            if(err){
+                console.log("error in update")
+                console.log(err)
+            }else{
+                res.redirect(`/company/${req.session.brand}`)
+            }
+        }
+      )
+})
+
 app.get('/admin/login', function(req,res){
     res.render('aconnect')
 })
@@ -65,7 +107,7 @@ app.post('/admin/login', function(req,res){
             console.log("db password : "+response.password)
             if(response.password != req.body.password){
                 res.render('aconnect', {error : 'wrong password'})
-            }else{
+            }else{ 
                 req.session.user = response.email;
                 console.log(req.session)
                 res.redirect(`/admin/dash`)

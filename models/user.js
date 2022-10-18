@@ -14,7 +14,8 @@ var UsersSchema = new mongoose.Schema({
         enum : ['user','brand']
     },
     createdAt: {
-        type: String
+        type: String,
+        default: Date.now
     }
 })
 

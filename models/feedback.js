@@ -23,10 +23,11 @@ var FeedbacksSchema = new mongoose.Schema({
         type: String
     },
     vote: {
-        type: Number
+        type:  [String]
     },
     createdAt: {
-        type: String
+        type: String,
+        default: Date.now
     }
 })
 
