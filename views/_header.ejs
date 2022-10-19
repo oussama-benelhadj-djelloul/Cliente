@@ -13,7 +13,7 @@
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#"><%= locals.Brand %> </a>
+        <a class="navbar-brand" href="/company/<%= locals.Brand %>"><%= locals.Brand %> </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -23,7 +23,10 @@
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
+              <a class="nav-link" href="/user/login">login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/user/registermail">register</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/admin/login">admin</a>
@@ -34,9 +37,14 @@
           </ul>
         </div>
       </div>
-      <% if (locals.user) { %>
+      <% if (locals.user ) { %>
         <div class="d-flex">
           <a class="btn btn-outline-danger" href="/user/logout" type="submit">Logout</a>
+        </div>
+      <% } %>
+      <% if (locals.auth) { %>
+        <div class="d-flex">
+          <a class="btn btn-outline-danger" href="/admin/logout" type="submit">Logout</a>
         </div>
       <% } %>
     </nav>

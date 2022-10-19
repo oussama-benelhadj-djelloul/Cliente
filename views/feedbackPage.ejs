@@ -2,6 +2,17 @@
     <%- include('_header'); -%>
 
     <h1>Hello, world!</h1>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <h4 class="alert-heading">Well done!</h4>
+      <p><%= Brand %> Thanks you for your Feedback.</p>
+      <hr>
+      <p class="mb-0">We will stay in touch for more details.</p>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="alert alert-danger " role="alert">
+      Make sure to create account of login so we can publish your feedbakc to everyone.
+    </div>
+    
     <%= feedbacks %> 
     <p class="text-muted">powered BY Cliente</p>
     <!-- Optional JavaScript; choose one of the two! -->

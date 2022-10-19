@@ -16,11 +16,24 @@
             </div>
             <% } %>
           <a href="#" class="card-link"><%= feedback.vote %></a>
-          <% if (user !=  "noone") { %>
+          
+            <% if (feedback.response) { %>
+              <div class="mb-3">
+                kayn reponse <%= feedback.response %> 
+              </div>
+             <% } else { %>
+              <form action="/admin/dash/response/<%= feedback._id %>" method="POST">
+              <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                <textarea required class="form-control" name="response" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <div class="col-auto">
+                <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+              </div>
+            </form>
+            <% } %>
             
-          <% } else { %>
-            s
-          <% } %>
+            
           
           <!-- upvote model -->
           
