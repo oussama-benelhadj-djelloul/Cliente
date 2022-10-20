@@ -3,24 +3,29 @@ const mongoose = require('mongoose')
 var FeedbacksSchema = new mongoose.Schema({
     title: {
         type: String,
-        required : true
+        required : true,
+        unique: true
     },
     description: {
         type: String,
         required : true
     },
     from: {
-        type: String
+        type: String,
+        required : true
+        
     },
     response: {
         type: String
     },
     important : {
         type: String,
-        enum : ['nice-to-have','importrant','critical']
+        enum : ['nice-to-have','important','critical'],
+        required : true
     },
     to: {
-        type: String
+        type: String,
+        required : true
     },
     vote: {
         type:  [String]

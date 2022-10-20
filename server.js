@@ -14,6 +14,8 @@ app.use(session({ resave: true ,secret: '123456' , saveUninitialized: true}));
 require('./Models/db')();
 //the engine
 app.set('view engine', 'ejs');
+//Public folders
+app.use(express.static(__dirname + '/public'));
 
 app.get('/',function (req,res){
     console.log('Landing Page')
@@ -22,8 +24,21 @@ app.get('/',function (req,res){
 
 app.get('/company/:id', async function(req,res){
     req.session.brand = req.params.id;
-    const results = await feedbacks.find({to : req.params.id})
-    res.render('index', {Brand : req.params.id, feedbacks : results, user :  req.session.user})
+    await brands.exists({name:req.params.id},async function (err, doc) {
+        if (err){
+            console.log(err)
+        }else{
+            if (doc) {
+                const results = await feedbacks.find({to : req.params.id})
+                console.log(req.session)
+                res.render('index', {Brand : req.params.id, feedbacks : results, user :  req.session.user})
+            } else {
+                res.render("notFound")
+            }
+            
+        }
+    });
+    
 })
 
 app.get('/user/login', function(req,res){
@@ -55,6 +70,7 @@ app.post('/user/login', function(req,res){
 app.post('/feedback/create',async function(req,res){
 
     console.log(req.body)
+    console.log(req.session)
     var feedback = new feedbacks({
         title: req.body.title,
         description: req.body.description,
@@ -64,6 +80,7 @@ app.post('/feedback/create',async function(req,res){
     });
     await feedback.save()
         .then(item => {
+            console.log(item)
             res.redirect(`/feedback/view/${item._id}`)
         })
         .catch(err => {

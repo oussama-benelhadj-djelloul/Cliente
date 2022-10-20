@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+body{
+    background-color:  #030516!important;
+    color:rgb(240, 240, 240)!important;
+}
+
+div{
+    font-family: 'Inter', sans-serif;
+}
+
+nav{
+    background-color:  rgba(255, 255, 255, 0.1)!important;
+    backdrop-filter: blur(15px) ;
+    border-bottom: 0.5px Solid rgb(137, 137, 137) ;
+}
+
+#shape-1{
+    min-width: 800px;
+    height: 800px;
+    top: -850px;
+    Left: 400px;
+    filter: blur(150px);
+    z-index: 0;
+  }
+  #shape-1 {
+    background-color: rgb(220, 217, 255);
+    margin-left: auto;
+  margin-right: auto;
+  }
+
+
+.card{
+    background-color:  rgba(255, 255, 255, 0.1)!important;
+    border-radius: 10px!important;
+    cursor: pointer;
+    color:  rgb(240, 240, 240);
+}
+
+.card:hover{
+    background-color:  rgba(255, 255, 255, 0.05)!important;
+    border: 0.5px solid rgb(240, 240, 240) ;
+}
+
+.bg-darklinear{
+    background-color:  #030516!important;
+}
+
+#btnupvote{
+    border: 1px solid #6d83ce ;
+    color: #6d83ce ;
+}
+
+#btnupvote:hover{
+    color: rgb(240, 240, 240) ;
+    background-color: #6d83ce ;
+}

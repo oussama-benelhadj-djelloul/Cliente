@@ -1,29 +1,31 @@
 
     <%- include('_header'); -%>
+    <div class="container">
+      <div class="row">
+        <div class="col">
 
-    <h1>Hello, world!</h1>
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
+          
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
       <h4 class="alert-heading">Well done!</h4>
       <p><%= Brand %> Thanks you for your Feedback.</p>
       <hr>
       <p class="mb-0">We will stay in touch for more details.</p>
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-    <div class="alert alert-danger " role="alert">
-      Make sure to create account of login so we can publish your feedbakc to everyone.
+    <% if (!locals.user ) { %>
+      <div class="alert alert-danger " role="alert">
+        Make sure to create account of login so we can publish your feedbakc to everyone.
+      </div>
+    <% } %>
+    <div class="py-0 my-0 h1" ><%= feedbacks[0].title %></div>
+    <div class="text-muted mb-4">
+      <%= feedbacks[0].important %> | <%= feedbacks[0].from %>
+    </div>
+    <div class="h4" style="color:  rgb(240, 240, 240);">
+      <%= feedbacks[0].description %>
     </div>
     
-    <%= feedbacks %> 
-    <p class="text-muted">powered BY Cliente</p>
-    <!-- Optional JavaScript; choose one of the two! -->
-
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
-    <!-- Option 2: Separate Popper and Bootstrap JS -->
-    <!--
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
-    -->
-  </body>
-</html>
+      </div>
+    </div>
+    </div>
+    <%- include('_footer'); -%>

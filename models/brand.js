@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 var BrandsSchema = new mongoose.Schema({
     email: {
         type: String,
-        required : true
+        required : true,
+        unique: true
     },
     password: {
         type: String,
@@ -11,7 +12,8 @@ var BrandsSchema = new mongoose.Schema({
     },
     name : {
         type: String,
-        required : true
+        required : true,
+        unique: true
     },
     createdAt: {
         type: Date,
