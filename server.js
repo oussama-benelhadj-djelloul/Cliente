@@ -235,9 +235,10 @@ app.post('/admin/register/',async function(req,res){
         });
 })
 
-app.get('/admin/logout',function(req,res){
+app.get('/admin/logout/',function(req,res){
     var brand = req.session.brandDash
-    req.session.user = null
+    req.session.brandAuth = null
+    req.session.brandDash = null
     req.session.regenerate(function (err) {
         console.log(err)
     })
