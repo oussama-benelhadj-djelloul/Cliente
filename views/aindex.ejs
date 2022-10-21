@@ -1,42 +1,49 @@
 
  <%- include('_header'); -%>
-
-    <div class="h1">Hello, <%= brand %>  </div>
-    <% feedbacks.forEach(feedback => { %>  
-      <div class="card mb-2">
-        <div class="card-body">
-          <h5 class="card-title"><%= feedback.title %> </h5>
-          <h6 class="card-subtitle mb-2 text-muted"><%= feedback.important %></h6>
-          <p class="card-text"><%= feedback.description %></p>
-          <% if (feedback.response) { %>
-           
-            <div class="alert alert-success" role="alert">
-              <%= feedback.response %>
+  <div class="container">
+    <div class="row" data-masonry='{"percentPosition": true }'>
+        <% feedbacks.forEach(feedback => { %>  
+          <div class="col-md-4">
+            <div class="card  mb-2">
+              <div class="card-body">
+                <h5 class="card-title"><%= feedback.title %> </h5>
+                <h6 class="card-subtitle mb-2 text-muted"><%= feedback.important %></h6>
+                <p class="card-text"><%= feedback.description %></p>
+                <% if (feedback.response) { %>
+                 
+                  <div class="alert alert-success" role="alert">
+                    <%= feedback.response %>
+                  </div>
+                  <% } %>
+                <a href="#" class="card-link"><%= feedback.vote %></a>
+                
+                  <% if (feedback.response) { %>
+                    <div class="mb-3">
+                      kayn reponse <%= feedback.response %> 
+                    </div>
+                   <% } else { %>
+                    <form action="/admin/dash/response/<%= feedback._id %>" method="POST">
+                    <div class="mb-3">
+                      <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
+                      <textarea required class="form-control" name="response" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                    <div class="col-auto">
+                      <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
+                    </div>
+                  </form>
+                  <% } %>
+                  
+                  
+                
+                <!-- upvote model -->
+                
+              </div>
             </div>
-            <% } %>
-          <a href="#" class="card-link"><%= feedback.vote %></a>
+          </div>
           
-            <% if (feedback.response) { %>
-              <div class="mb-3">
-                kayn reponse <%= feedback.response %> 
-              </div>
-             <% } else { %>
-              <form action="/admin/dash/response/<%= feedback._id %>" method="POST">
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Example textarea</label>
-                <textarea required class="form-control" name="response" id="exampleFormControlTextarea1" rows="3"></textarea>
-              </div>
-              <div class="col-auto">
-                <button type="submit" class="btn btn-primary mb-3">Confirm identity</button>
-              </div>
-            </form>
-            <% } %>
-            
-            
-          
-          <!-- upvote model -->
-          
-        </div>
-      </div>
-    <% }) %>
+        <% }) %>
+    </div>
+  </div>
+    <div class="h1">Hello, <%= brand %>  </div>
+    <script src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js"></script>
     <%- include('_footer'); -%>

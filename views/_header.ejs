@@ -17,35 +17,45 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/user/login">login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/user/registermail">register</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/admin/login">admin</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav ">
+            <li class="nav-item ">
+              <% if (locals.user || locals.auth ) { %>
+                <% if (locals.auth) { %>
+                  <div class="d-flex">
+                    <a class="btn btn-outline-danger" href="/admin/logout" type="submit">Logout</a>
+                  </div>
+                  <% }else{ %>
+                    <div class="d-flex">
+                      <a class="btn btn-outline-danger" href="/user/logout" type="submit">Logout</a>
+                    </div>
+                    <% } %>
+              <% }else{ %>
+                <div class="dropdown ">
+                  <button class="btn bg-darklinear text-light dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 20">
+                      <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                    </svg>
+                     Connect
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+                    <li class="nav-item dropdown-item">
+                      <a class="nav-link" href="/user/login">Login</a>
+                    </li>
+                    <li class="nav-item dropdown-item">
+                      <a class="nav-link" href="/user/registermail">Create Account</a>
+                    </li>
+                    <li class="nav-item dropdown-item">
+                      <a class="nav-link" href="/admin/login">Pro Account</a>
+                    </li>
+                  </ul>
+                </div>
+                <% } %>
+              
+              
             </li>
           </ul>
         </div>
-        <% if (locals.user ) { %>
-          <div class="d-flex">
-            <a class="btn btn-outline-danger" href="/user/logout" type="submit">Logout</a>
-          </div>
-        <% } %>
-        <% if (locals.auth) { %>
-          <div class="d-flex">
-            <a class="btn btn-outline-danger" href="/admin/logout" type="submit">Logout</a>
-          </div>
-        <% } %>
       </div>
     </nav>
     <div id="shape-1" class="rounded-circle position-absolute opacity-70 scale-up-center d-none d-md-block"></div>
