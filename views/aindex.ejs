@@ -107,9 +107,13 @@
                 
               </div>
             </div>
-          </div>
-          
+          </div>   
         <% }) %>
+        <% if (feedbacks.length == 0) { %>
+          <div class="text-center align-self-center h2 mt-4 w-50">
+            There is no feeedback yet, share your company link to gather some feedback.
+          </div>
+        <% } %>
     </div>
   </div>
 

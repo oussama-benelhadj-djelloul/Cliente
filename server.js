@@ -193,7 +193,7 @@ app.post('/admin/login', function(req,res){
 app.get('/admin/dash', async function(req,res){
     if(req.session.brandAuth){
         const response = await feedbacks.find({to : req.session.brandDash})
-        const contirbutors = await feedbacks.find().distinct("from")
+        const contirbutors = await feedbacks.find({to : req.session.brandDash}).distinct("from")
         console.log("conterbutors : "+contirbutors)
         res.render('aindex', {feedbacks : response, auth : req.session.brandAuth,contirbutors:contirbutors ,  brand :  req.session.brandDash})
     }else{
