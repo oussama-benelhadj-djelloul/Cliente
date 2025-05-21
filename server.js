@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended: true}))
 
 app.use(session({ resave: true ,secret: '123456' , saveUninitialized: true}));
 
-require('./Models/db')();
+require('./models/db')();
 //the engine
 app.set('view engine', 'ejs');
 //Public folders
